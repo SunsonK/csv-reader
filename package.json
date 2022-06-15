@@ -1,0 +1,16 @@
+{
+  "name": "manulife",
+  "version": "1.0.0",
+  "description": "test task",
+  "main": "server.ts",
+  "scripts": {
+    "start": "nodemon --config .nodemon --signal SIGTERM --exec ts-node -r tsconfig-paths/register --transpile-only server.ts --host 0.0.0.0",
+    "test": "npm run test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.16",
+    "typescript": "^4.7.3"
+  }
+}
