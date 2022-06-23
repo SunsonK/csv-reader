@@ -1,8 +1,10 @@
 import { Router } from "express";
+import * as express from 'express';
 import multer from 'multer';
 import * as csv from 'fast-csv';
 
 import fs from 'fs';
+import { DB_NAME } from '../../config';
 
 import { SalesRecord } from '../../model/SalesRecord';
 
@@ -15,9 +17,9 @@ const upload = multer({ dest: 'tmp/csv/' });
 
 const recordRouter = Router();
 
-recordRouter.post('/', upload.single('file'), (req, res) => {
+const recordRouterHandler = (req: express.Request, res: express.Response) => {
     const fileRows: SalesRecord[] = [];
-    const db = client.db('testDB');
+    const db = client.db(DB_NAME);
 
     if (!req.file) {
       res.status(500).send('File is required');
@@ -54,6 +56,8 @@ recordRouter.post('/', upload.single('file'), (req, res) => {
         fs.unlinkSync(filePath);
         res.sendStatus(200);
       });
-  });
+  }
+
+recordRouter.post('/', upload.single('file'), recordRouterHandler);
 
 export { recordRouter };

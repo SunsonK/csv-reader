@@ -1,3 +1,4 @@
+import * as express from 'express';
 import { Router } from 'express';
 import { client } from '../../db/mongo';
 import moment from 'moment';
@@ -6,7 +7,7 @@ import { DB_COLLECTION_NAME } from '../../config';
 
 const reportRouter = Router();
 
-reportRouter.get('/', async (req, res) => {
+const reportRouterHandler = async (req: express.Request, res: express.Response) => {
 
     const db = client.db('testDB');
     const collections = db.collection(DB_COLLECTION_NAME);
@@ -49,6 +50,8 @@ reportRouter.get('/', async (req, res) => {
 
     res.send(result);
     return;
-  })
+  }
 
-export { reportRouter };
+reportRouter.get('/', reportRouterHandler)
+
+export { reportRouter, reportRouterHandler };
