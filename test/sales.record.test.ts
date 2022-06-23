@@ -90,6 +90,8 @@ describe('Test file streaming operation', () => {
       fs.unlinkSync(dest);
 
       expect(fs.existsSync(dest)).toBeFalsy();
+
+      return;
     });
   })
 
@@ -107,7 +109,8 @@ describe('Test file streaming operation', () => {
 
       expect(error).toBeDefined();
       expect(fs.existsSync(dest)).toBeFalsy();
-      return;
+
+      throw 'error';
     })
     .on('data', row => {
       rowCount++;
