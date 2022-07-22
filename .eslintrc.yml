@@ -1,0 +1,54 @@
+---
+parser: '@typescript-eslint/parser'
+ignorePatterns: []
+env:
+    node: true
+plugins:
+    - import
+    - '@typescript-eslint'
+    - eslint-comments
+    - prettier
+settings:
+    import/parsers:
+        '@typescript-eslint/parser':
+            - '.ts'
+            - '.tsx'
+    import/resolver:
+        typescript:
+            ~: ['.']
+rules:
+    valid-jsdoc: 0 # we use mostly @deprecate from all docs
+    react/jsx-props-no-spreading: 0
+    prefer-promise-reject-errors: 0
+    react/destructuring-assignment: 0
+    react/no-unescaped-entities: 0
+    jsx-a11y/click-events-have-key-events: 0
+    jsx-a11y/no-noninteractive-element-interactions: 0
+    require-await: error
+    jest/no-try-expect: 0
+    jest/expect-expect: 0
+    jest/no-disabled-tests: 0
+    jest/valid-expect: 0
+    jest/no-standalone-expect: 0
+    camelcase:
+        - error
+    import/default: error
+    import/no-self-import: error
+    import/no-unresolved: error
+    import/no-useless-path-segments: error
+    import/no-restricted-paths: error
+    import/extensions: off
+    no-unused-vars: 0
+    import/no-cycle: [error, { maxDepth: 10 }]
+    '@typescript-eslint/no-unused-vars':
+        - error
+        - vars: all
+          args: after-used
+          ignoreRestSiblings: true
+    no-useless-constructor: 0
+    '@typescript-eslint/no-useless-constructor': error
+    no-empty-function: 0
+    '@typescript-eslint/no-empty-function': error
+    no-console:
+        - error
+        - allow: [warn, error, info, debug, time, timeEnd, table]
